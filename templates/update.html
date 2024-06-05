@@ -1,0 +1,24 @@
+{% extends "layout.html" %} {% block body %}
+<div class="container">
+    <form action="{{url_for('updatetask', id = task['id'])}}" method="post">
+        <tr>
+            <td>
+                <input name="tmember" type="text" class="form-control" value="{{task['tmember']}}"
+                    placeholder="Team Member" required />
+            </td>
+            <td>
+                <input name="task" type="text" class="form-control" value="{{task['todaystask']}}" placeholder="Task"
+                    required />
+            </td>
+            <td>
+                <button type="submit" class="link-underline-light text-primary border border-0">
+                    Update
+                    <i class="fa fa-plus text-success me-3 text-warning underline-none" aria-hidden="true"></i>
+                </button>
+            </td>
+        </tr>
+    </form>
+
+    <br /><br />
+    {% endblock %}
+</div>

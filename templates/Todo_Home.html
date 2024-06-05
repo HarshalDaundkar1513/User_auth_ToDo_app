@@ -1,0 +1,79 @@
+{% extends "Base.html" %} {% block body %}
+<div class="container">
+    <section class="vh-100 gradient-custom-2">
+        <div class="container py-5 h-100">
+            <div class="row d-flex justify-content-center align-items-center h-100">
+                <div class="col-md-12 col-xl-10">
+                    <div class="card mask-custom">
+                        <div class="card-body p-4 text-white">
+                            <div class="text-center pt-3 pb-2">
+                                <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-todo-list/check1.webp"
+                                    alt="Check" width="60" />
+                                <h2 class="my-4 text-primary">Task List</h2>
+                            </div>
+
+                            <table class="table text-white mb-0">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Team Member</th>
+                                        <th scope="col">Task</th>
+                                        <th scope="col">Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for eachtask in all_task %}
+                                    <tr class="fw-normal">
+                                        <td class="align-middle">
+                                            <span>{{ eachtask['todaystask'] }}</span>
+                                        </td>
+                                        <th>
+                                            <span class="ms-2">{{ eachtask['Tmember'] }}</span>
+                                        </th>
+                                        <td class="align-middle">
+                                            <a href="{{ url_for('deletetask', id=eachtask['id']) }}"
+                                                data-mdb-tooltip-init title="Done" class="link-underline-light">
+                                                Done
+                                                <i class="fas fa-check fa-lg text-success me-3"></i>
+                                            </a>
+                                            <a href="{{ url_for('updatetask', id=eachtask['id']) }}"
+                                                data-mdb-tooltip-init title="Update" class="link-underline-light">
+                                                Update
+                                                <i class="fas fa-pencil-alt fa-lg text-warning underline-none"></i>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+
+                            <!-- Add Task Section -->
+                            <div class="mt-4">
+                                <h4 class="text-primary">Add Something New...</h4>
+                                <form action="/inserttask" method="post" class="form-inline">
+                                    <div class="row g-3">
+                                        <div class="col-md-5">
+                                            <input name="tmember" type="text" class="form-control"
+                                                placeholder="Team Member" required />
+                                        </div>
+                                        <div class="col-md-5">
+                                            <input name="task" type="text" class="form-control" placeholder="Task"
+                                                required />
+                                        </div>
+                                        <div class="col-md-2">
+                                            <button type="submit" class="btn btn-primary">
+                                                Add Task
+                                                <i class="fa fa-plus text-warning" aria-hidden="true"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                            <!-- End Add Task Section -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+{% endblock %}
