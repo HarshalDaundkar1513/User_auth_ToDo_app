@@ -7,8 +7,13 @@
                     class="img-fluid" alt="Sample image" />
             </div>
             <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
+                {% with messages = get_flashed_messages(with_categories=true) %} {% if
+                messages %} {% for category, message in messages %}
+                <div class="alert alert-{{ category }}" role="alert">
+                    {{ message }}
+                </div>
+                {% endfor %} {% endif %} {% endwith %}
                 <form method="post" action="{{ url_for('LoginAuth') }} ">
-
 
                     <!-- Email input -->
                     <div data-mdb-input-init class="form-outline mb-4">
